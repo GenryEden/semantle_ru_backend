@@ -3,8 +3,6 @@ from typing import Union
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import RedirectResponse
 
 from cryptography.fernet import Fernet
 import random
@@ -21,9 +19,6 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=['*']
 )
-
-app.mount("/", StaticFiles(directory="frontend", html=True), name="frontend")
-
 
 @app.get("/random_word")
 def random_word() -> bytes:
